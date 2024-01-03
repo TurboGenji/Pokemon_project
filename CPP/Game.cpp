@@ -1304,8 +1304,6 @@ void map(int start)
 		}
 
 	}
-	bigmap[characterLocY][characterLocX] = character;
-
 	while (true) {
 		system("cls");
 		bool transition = false;
@@ -1318,6 +1316,8 @@ void map(int start)
 			}
 			cout << endl;
 		}
+		set(characterLocX, characterLocY);
+		cout << character;
 		while (transition == false)
 		{
 			int enemyt;
@@ -1627,52 +1627,7 @@ void map(int start)
 
 			}
 
-			for (int i = 0; i < n; i++)
-			{
-				for (int j = 0; j < k; j++)
-				{
-					bigmap[i][0] = bigmap[i][1] = bigmap[i][k - 1] = bigmap[i][k - 2] = bigmap[0][j] = bigmap[n - 1][j] = block;
-					bigmap[i][j + 1] = space;
-					if (i == 2 && ((j == 18) || (j == 19) || (j == 20) || (j == 21) || (j == 22)))
-						bigmap[i][j] = block;
-				}
-			}
-			for (int bushY1 = bushY + 4; bushY1 > bushY; bushY1--) //Куст сверху слева
-			{
-				for (int bushX1 = bushX + 5; bushX1 > bushX; bushX1--)
-				{
-					bigmap[bushY1][bushX1] = bush;
 
-				}
-
-			}
-
-			for (int bushY1 = 4 * bushY + 4; bushY1 > 4 * bushY; bushY1--)	//Куст снизу слева
-			{
-				for (int bushX1 = bushX + 5; bushX1 > bushX; bushX1--)
-				{
-					bigmap[bushY1][bushX1] = bush;
-
-				}
-			}
-			for (int bushY1 = n - 7; bushY1 < n - 3; bushY1++)	//Куст спарва снизу
-			{
-				for (int bushX1 = k - 11; bushX1 < k - 6; bushX1++)
-				{
-					bigmap[bushY1][bushX1] = bush;
-
-
-				}
-			}
-			for (int bushY1 = n - 16; bushY1 < n - 12; bushY1++)	 //Куст сверху справа
-			{
-				for (int bushX1 = k - 11; bushX1 < k - 6; bushX1++)
-				{
-					bigmap[bushY1][bushX1] = bush;
-
-				}
-
-			}
 			if (transition != true) {
 				char keyboard = _getch();
 
@@ -1685,9 +1640,8 @@ void map(int start)
 					characterLocY--;
 					if (characterLocY == 0)
 						characterLocY = 1;
-					bigmap[characterLocY][characterLocX] = character;
 					set(characterLocX, characterLocY);
-					cout << bigmap[characterLocY][characterLocX];
+					cout << character;
 					break;
 				}
 				case 's':
@@ -1697,9 +1651,8 @@ void map(int start)
 					characterLocY++;
 					if (characterLocY == 19)
 						characterLocY = 18;
-					bigmap[characterLocY][characterLocX] = character;
 					set(characterLocX, characterLocY);
-					cout << bigmap[characterLocY][characterLocX];
+					cout << character;
 					break;
 				}
 				case 'a':
@@ -1709,9 +1662,8 @@ void map(int start)
 					characterLocX--;
 					if (characterLocX == 1 || characterLocX == 0)
 						characterLocX = 2;
-					bigmap[characterLocY][characterLocX] = character;
 					set(characterLocX, characterLocY);
-					cout << bigmap[characterLocY][characterLocX];
+					cout << character;
 					break;
 				}
 				case 'd':
@@ -1721,9 +1673,8 @@ void map(int start)
 					characterLocX++;
 					if (characterLocX == 40 || characterLocX == 41)
 						characterLocX = 39;
-					bigmap[characterLocY][characterLocX] = character;
 					set(characterLocX, characterLocY);
-					cout << bigmap[characterLocY][characterLocX];
+					cout << character;
 					break;
 				}
 				case 9: {
@@ -1737,7 +1688,6 @@ void map(int start)
 				}
 				}
 			}
-			bigmap[characterLocY][characterLocX] = character;
 
 
 		}
